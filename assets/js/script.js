@@ -66,11 +66,12 @@ canvas.addEventListener("click", e => {
     const y = e.offsetY;
     const pixel = ctx.getImageData(x, y, 1, 1).data;
     const rgbString = `rgb(${pixel[0]}, ${pixel[1]}, ${pixel[2]})`;
+    alert(rgbString);
     // Only show alert if the color matches a continent
-    if (colorsContinents[rgbString]) {
-        const continentClicked = colorsContinents[rgbString];
-        alert(`You clicked on ${continentClicked}`);
-    }
+    //if (colorsContinents[rgbString]) {
+    //    const continentClicked = colorsContinents[rgbString];
+    //    alert(`You clicked on ${continentClicked}`);
+    //}
 
 });
 
