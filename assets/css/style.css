@@ -5,10 +5,11 @@
 body {
     margin: 0;
     padding: 0;
-    background: rebeccapurple;
+    background: darkslategray;
 }
 
-#wrapper {
+#wrapper,
+.map-container {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;

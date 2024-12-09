@@ -1,6 +1,10 @@
 /**
  * Image credit:
  * https://www.georgethegeographer.co.uk/Base_maps/World_7colour_unnamed.jpg
+ * 
+ * SVG credit:
+ * https://en.m.wikipedia.org/wiki/File:Continents.svg
+ * 
  */
 
 /**
@@ -31,23 +35,23 @@ let intrinsicHeight = null;
 /**
  * References to elements
  */
-const canvas = document.getElementById("continent-canvas");
-const ctx = canvas.getContext("2d");
-const wrapper = document.getElementById("wrapper");
+//const canvas = document.getElementById("continent-canvas");
+//const ctx = canvas.getContext("2d");
+//const wrapper = document.getElementById("wrapper");
 
 
 
 /**
  * Load image into memory, store natural dimensions and render canvas
  */
-const img = new Image();
-img.src = "assets/images/continents-map.jpg";
-img.onload = () => {
-    intrinsicWidth = img.width;
-    intrinsicHeight = img.height;
-    populateContinentColors(img);
-    renderCanvas();
-};
+//const img = new Image();
+//img.src = "assets/images/continents-map.jpg";
+//img.onload = () => {
+//    intrinsicWidth = img.width;
+//    intrinsicHeight = img.height;
+//    populateContinentColors(img);
+//    renderCanvas();
+//};
 
 /**
  * Render image to canvas, with size calculated based on width of wrapper div 
@@ -106,14 +110,58 @@ function populateContinentColors(img) {
 
 
 // Add event listener to canvas that listens for clicks
-canvas.addEventListener("click", handleCanvasClick);
+//canvas.addEventListener("click", handleCanvasClick);
 
 // Add event listener to window that re-renders the canvas when the window is resized
-window.addEventListener("resize", renderCanvas);
+//window.addEventListener("resize", renderCanvas);
 
 
 
 
+
+
+const continentsMeta = {
+    "north-america": {
+        pretty: "North America",
+        color: "red",
+    },
+    "south-america": {
+        pretty: "South America",
+        color: "green",
+    },
+    "europe": {
+        pretty: "Europe",
+        color: "blue",
+    },
+    "africa": {
+        pretty: "Africa",
+        color: "yellow",
+    },
+    "asia": {
+        pretty: "Asia",
+        color: "purple",
+    },
+    "Oceania": {
+        pretty: "Oceania",
+        color: "orange",
+    },
+}
+
+const continentMapObject = document.getElementById("continent-map");
+
+continentMapObject.addEventListener("load", function () {
+    // Get the SVG document inside the object
+    const svgDoc = continentMapObject.contentDocument;
+    const svg = svgDoc.querySelector("svg");
+    svg.addEventListener("click", e => {
+        //console.log(e.target, e.currentTarget);
+        const { target } = e;
+        if (target.tagName === "path") {
+            const continent = target.getAttribute("data-continent");
+            alert(`You clicked on ${continent}`);
+        }
+    });
+});
 
 
 
